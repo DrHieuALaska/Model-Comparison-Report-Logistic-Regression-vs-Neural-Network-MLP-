@@ -76,14 +76,17 @@ The MLP model follows a classic forward propagation sequence:
 $$
 Z_1 = X \cdot W_1 + b_1
 $$  
+
 $$
 A_1 = \text{ReLU}(Z_1)
 $$
 
 2. **Output Layer:** 
+
 $$
 Z_2 = A_1 \cdot W_2 + b_2
 $$  
+
 $$
 \hat{y} = \text{Sigmoid}(Z_2)
 $$
