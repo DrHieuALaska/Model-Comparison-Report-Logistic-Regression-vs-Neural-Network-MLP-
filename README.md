@@ -11,6 +11,11 @@ computed from digitized images of breast tissue.
 
 The dataset is relatively small, clean, and contains many highly correlated features.
 
+![Some feature's distribution graph](photos/FourFirstFeatures.png)
+
+![Some highly skewed feature's distribution graph](photos/Highly_skewed_features.png)
+
+![Feature correlation heatmap](photos/Feature_Correlation_HeatMap.png)
 ---
 
 ## 2. Data Preprocessing
@@ -26,9 +31,9 @@ This separation ensures a fair and unbiased evaluation.
 ### 2.2 Feature Scaling
 All features were standardized using **z-score normalization**:
 
-\[
+$$
 x_{scaled} = \frac{x - \mu}{\sigma}
-\]
+$$
 
 Scaling was fit on the training set and applied consistently to validation and test sets.
 
@@ -61,6 +66,32 @@ This implementation included:
 - Explicit forward and backward propagation
 - Manual gradient computation
 - L2 regularization in both loss and gradients
+
+#### Model Architecture
+
+The MLP model follows a classic forward propagation sequence:
+
+1. **Hidden Layer 1:** 
+
+$$
+Z_1 = X \cdot W_1 + b_1
+$$  
+$$
+A_1 = \text{ReLU}(Z_1)
+$$
+
+2. **Output Layer:** 
+$$
+Z_2 = A_1 \cdot W_2 + b_2
+$$  
+$$
+\hat{y} = \text{Sigmoid}(Z_2)
+$$
+
+### Loss Function
+We use **Binary Cross-Entropy** with L2 Regularization to train the model:
+
+$$Loss = -\frac{1}{n} \sum_{i=1}^{n} [y \log(\hat{y}) + (1-y) \log(1-\hat{y})] + \lambda \sum ||W||^2$$
 
 ---
 
